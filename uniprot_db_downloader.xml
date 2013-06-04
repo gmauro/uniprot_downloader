@@ -1,0 +1,37 @@
+<tool id="uniprot_db_downloader" name="Get proteins from UniProtKB using taxa ids" version="0.0.1">
+  <description></description>
+  <command interpreter="python">uniprot_db_downloader.py -i $taxaid -d $kb -o $outfilename -l $logfile </command>
+
+  <inputs>
+    <param name="taxaid" type="text" label="NCBI taxonomy ids" />
+    <param name="kb" type="select" label="Protein knowledgebase section">
+      <option value="0">UniProtKB</option>
+      <option value="1">UniProtKB/Swiss-Prot</option>
+      <option value="2">UniProtKB/TrEMBL</option>
+    </param>
+    <param name="set" type="select" label="Proteome Set">
+      <option value="0">Any</option>
+      <option value="1" selected="true">Reference set only</option>
+      <option value="2">Complete set</option>
+    </param>
+    <param name="include_isoform" type="boolean" truevalue="&amp;include=yes" falsevalue="" label="Include isoform data" />
+  </inputs>
+  <outputs>
+    <data name="outfilename" format="fasta" label="${tool.name}: (${kb.value_label}) fasta" />
+    <data format="txt" name="logfile" label="${tool.name}: log"/>
+  </outputs>
+  <tests>
+
+  </tests>
+  <help>
+**What it does**
+
+This tool retrieves all protein sequences from UniProt Knowledgebase  for each Taxa ID given.
+
+Multiple taxa id can be submitted separated by comma, es:
+
+1507,1772,1752,233413,1063,430066,359391
+
+
+  </help>
+</tool>
